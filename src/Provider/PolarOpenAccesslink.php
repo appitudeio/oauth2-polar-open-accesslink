@@ -28,7 +28,7 @@ class PolarOpenAccesslink extends AbstractProvider
     /**
      * @var string
      */
-    protected $apiVersion = '3';
+    protected $apiVersion = 'v3';
 
     /**
      * @var string
@@ -72,8 +72,6 @@ class PolarOpenAccesslink extends AbstractProvider
         return $this->getRequest($method, $url, $options);
     }
 
-
-
     /**
      * Builds request options used for requesting an access token.
      *
@@ -91,7 +89,7 @@ class PolarOpenAccesslink extends AbstractProvider
         return $options;
     }
     
-        /**
+    /**
      * Returns a prepared request for requesting an access token.
      *
      * @param array $params Query string parameters
@@ -105,9 +103,6 @@ class PolarOpenAccesslink extends AbstractProvider
 
         return $this->getBasicRequest($method, $url, $options);
     }
-
-
-
 
     /**
      * Get authorization url to begin OAuth flow
@@ -132,7 +127,7 @@ class PolarOpenAccesslink extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return self::BASE_DATA_URL.'/v' . $this->apiVersion . '/users/'.$this->getAccessToken->getValues()['x_user_id'];
+        return self::BASE_DATA_URL.'/' . $this->apiVersion . '/users/'.$token->getValues()[$this->getAccessTokenResourceOwnerId()];
     }
 
     /**
@@ -147,6 +142,16 @@ class PolarOpenAccesslink extends AbstractProvider
     {
         return ['accesslink.read_all'];
     }
+
+    /**
+     * Returns the key used in the access token response to identify the resource owner.
+     *
+     * @return string|null Resource owner identifier key
+     */
+    protected function getAccessTokenResourceOwnerId()
+    {
+        return 'x_user_id';
+    }    
 
     /**
      * @inheritDoc
