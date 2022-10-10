@@ -39,7 +39,7 @@ class PolarOpenAccesslink extends AbstractProvider
     /**
      * @inheritDoc
      */
-    /*public function getAccessToken($grant, array $options = [])
+    public function getAccessToken($grant, array $options = [])
     {
         $grant = $this->verifyGrant($grant);
 
@@ -55,7 +55,7 @@ class PolarOpenAccesslink extends AbstractProvider
         $token    = $this->createAccessToken($prepared, $grant);
 
         return $token;
-    }*/
+    }
 
     /**
      * Returns a prepared request for requesting an access token.
@@ -63,14 +63,14 @@ class PolarOpenAccesslink extends AbstractProvider
      * @param array $params Query string parameters
      * @return RequestInterface
      */
-    /*public function getBasicRequest($method, $url, array $options = [])
+    public function getBasicRequest($method, $url, array $options = [])
     {
         $options['headers']['Authorization'] = 'Basic ' . base64_encode(implode(':', [
                 $this->clientId,
                 $this->clientSecret,
             ]));
         return $this->getRequest($method, $url, $options);
-    }*/
+    }
 
     /**
      * Builds request options used for requesting an access token.
@@ -78,7 +78,7 @@ class PolarOpenAccesslink extends AbstractProvider
      * @param  array $params
      * @return array
      */
-    /*protected function getAccessTokenOptions(array $params)
+    protected function getAccessTokenOptions(array $params)
     {
         $options = parent::getAccessTokenOptions($params);
 
@@ -87,7 +87,7 @@ class PolarOpenAccesslink extends AbstractProvider
                 $this->clientSecret,
             ]));
         return $options;
-    }*/
+    }
     
     /**
      * Returns a prepared request for requesting an access token.
@@ -95,14 +95,14 @@ class PolarOpenAccesslink extends AbstractProvider
      * @param array $params Query string parameters
      * @return RequestInterface
      */
-   /* protected function getAccessTokenRequest(array $params)
+    protected function getAccessTokenRequest(array $params)
     {
         $method  = $this->getAccessTokenMethod();
         $url     = $this->getAccessTokenUrl($params);
         $options = $this->optionProvider->getAccessTokenOptions($this->getAccessTokenMethod(), $params);
 
         return $this->getBasicRequest($method, $url, $options);
-    }*/
+    }
 
     /**
      * Get authorization url to begin OAuth flow
